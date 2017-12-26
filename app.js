@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const config = require('./config/database');
 const User = require('./models/user');
 
+
 mongoose.connect(config.uri, config.options);
 var conn = mongoose.connection;             
  
@@ -17,7 +18,6 @@ conn.once('open', function() {
     console.log('Connected to database.')                      
 });
 
-
 //Fix Mongoose depricated promise library
 mongoose.Promise = global.Promise;
 
@@ -26,7 +26,10 @@ const app = express();
 const users = require('./routes/users');
 
 //Port Number configured for Heroku deployment.
-const port = process.env.PORT || 8080;
+//const port = process.env.PORT || 8080;
+
+//Dev Port
+const port = 8000;
 
 //CORS Middleware
 app.use(cors());
