@@ -5,7 +5,10 @@ const cors = require('cors');
 const passport = require("passport");
 const mongoose = require('mongoose');
 const config = require('./config/database');
+
+//Models
 const User = require('./models/user');
+const Post = require('./models/post');
 
 
 mongoose.connect(config.uri, config.options);
@@ -24,6 +27,7 @@ mongoose.Promise = global.Promise;
 const app = express();
 
 const users = require('./routes/users');
+const posts = require('./routes/posts');
 
 //Port Number configured for Heroku deployment.
 //const port = process.env.PORT || 8080;
@@ -45,8 +49,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
-
 app.use('/users', users);
+app.use('/posts', posts);
 
 //Index Route
 app.get('/', function(req,res){

@@ -23,6 +23,9 @@
       <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" [routerLink]="['/profile']">Profile</a>
       </li>
+      <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" [routerLink]="['/posts']">Posts</a>
+      </li>
       <li *ngIf="!authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
