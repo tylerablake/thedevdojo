@@ -21,6 +21,7 @@ import { PostComponent } from './components/post/post.component';
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
 import { AuthService } from './services/auth.service';
+import { PostService } from './services/post.service';
 
 //Guards
 import { AuthGuard } from './guards/auth.guard';
@@ -59,7 +60,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard],
+  providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

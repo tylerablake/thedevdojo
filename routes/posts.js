@@ -1,23 +1,35 @@
 const express = require('express');
 const router = express.Router();
-
 const Post = require('../models/post');
-
 
 //Get all
 router.get('/', function(req,res,next){   
-    res.send('Lists of posts here.');
+    return res.json({
+        title: 'Blog Title',
+        id: '123',        
+        body: 'Some cool blog text goes here.',
+        author: 'Tyler',
+        authorUsername: 'tyler'
+    });
 });
 
 //Get 1
-router.get('http://jsonplaceholder.typicode.com/posts/:number', function(req,res,next){   
-    res.send(req.params.number);
+var tempUrl = 'http://jsonplaceholder.typicode.com/posts';
+router.post('/:id', function(req,res,next){   
+    console.log(req.params.id);
+    Post.getPostById(req.params.id);    
 });
 
 //Create
-router.post('/temp', function(req,res,next){
-    res.send('Temp');
-});
+// router.get('/temp', function(req,res,next){
+//     return res.json({
+//         title: 'Blog Title',
+//         id: '123',        
+//         body: 'Some cool blog text goes here.',
+//         author: 'Tyler',
+//         authorUsername: 'tyler'
+//     });
+// });
 
 
 //Update
