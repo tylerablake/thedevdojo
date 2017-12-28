@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 import { PostComponent } from './components/post/post.component';
 
 //Services
@@ -30,6 +31,7 @@ import { environment } from '../environments/environment';
 
 
 
+
 //Routes
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
   {path: 'dashboard',component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile',component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'settings',component: SettingsComponent},
-  {path: 'posts', component: PostComponent}
+  {path: 'posts', component: PostListComponent},
+  {path: 'posts/:id', component: PostComponent}
 ];
 
 @NgModule({
@@ -51,7 +54,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     SettingsComponent,
-    PostComponent
+    PostComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,

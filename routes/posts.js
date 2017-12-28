@@ -4,38 +4,20 @@ const Post = require('../models/post');
 
 //Get all
 router.get('/', function(req,res,next){   
-    return res.json({
-        title: 'Blog Title',
-        id: '123',        
-        body: 'Some cool blog text goes here.',
-        author: 'Tyler',
-        authorUsername: 'tyler'
-    });
+    res.json(Post.getPosts())
 });
 
 //Get 1
-var tempUrl = 'http://jsonplaceholder.typicode.com/posts';
-router.post('/:id', function(req,res,next){   
+router.get('/:id', function(req,res,next){   
     console.log(req.params.id);
-    Post.getPostById(req.params.id);    
+    res.json(Post.getPostById(req.params.id));    
 });
 
-//Create
-// router.get('/temp', function(req,res,next){
-//     return res.json({
-//         title: 'Blog Title',
-//         id: '123',        
-//         body: 'Some cool blog text goes here.',
-//         author: 'Tyler',
-//         authorUsername: 'tyler'
-//     });
-// });
+//TODO: Create
 
+//TODO: Update
 
-//Update
-
-
-//Delete
+//TODO: Delete/Deactivate
 
 
 module.exports = router;

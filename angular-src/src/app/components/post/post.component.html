@@ -1,20 +1,7 @@
-<div class="container">
-  <div class="row">
-      <div class="col-md-12">
-          <h3>Post 1</h3>        
-      </div>
-    <p>Some text about a cool blog post.</p>
-  </div>
-  <div class="row">
-      <div class="col-md-12">
-          <h3>Post 2</h3>        
-      </div>
-    <p>Some text about a cool blog post.</p>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-        <h3>Post 3</h3>        
-    </div>    
-    <p>Some text about a cool blog post.</p>
-  </div>
+<div *ngIf="post">
+  <h2 class="page-header">{{post.title}}</h2>
+  <span>John Doe</span>
+  <br>
+  <small>Dec 20, 2017</small>
+  <p>{{post.body}}</p>
 </div>

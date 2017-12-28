@@ -10,12 +10,17 @@ export class PostService {
 
   constructor(private http:Http) { }
 
+  getPosts(){
+      let headers = new Headers();
+      headers.append('Content-Type', 'Application/json');
+      return this.http.get(environment.apiUrl + 'posts/', {headers: headers})
+      .map(res => res.json());    
+  }
 
-  getById(id){
-    var tempUrl = 'http://jsonplaceholder.typicode.com/posts';
+  getById(id){    
     let headers = new Headers();
     headers.append('Content-Type', 'Application/json');
-    return this.http.post(tempUrl + id, {headers: headers})
+    return this.http.get(environment.apiUrl + 'posts/' + id, {headers: headers})
     .map(res => res.json());
   }
 }
