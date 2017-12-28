@@ -5,16 +5,13 @@
   }
 </style>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" [routerLink]="['/']">MEAN Auth App</a>
+  <a class="navbar-brand" [routerLink]="['/']">The Dev Dojo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto navbar-left">
-      <li class="nav-item active" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}" >      
-        <a class="nav-link" [routerLink]="['/']">Home</a>
-      </li>
     </ul>
     <ul class="navbar-nav navbar-right">
       <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
@@ -26,7 +23,7 @@
       <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" [routerLink]="['/posts']">Posts</a>
       </li>
-      <li *ngIf="!authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
+      <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
       <li *ngIf="!authService.loggedIn()" class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
@@ -34,9 +31,6 @@
       </li>
       <li *ngIf="authService.loggedIn()" class="nav-item" >
         <a class="nav-link" href="#" (click)="onLogoutClick()">Logout</a>
-      </li>
-      <li class="nav-item" [routerLinkActive]="[active]" [routerLinkActiveOptions]="{exact:true}">
-          <a class="nav-link" [routerLink]="['/settings']">Settings</a>
       </li>
     </ul>
   </div>
