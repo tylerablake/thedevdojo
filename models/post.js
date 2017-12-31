@@ -15,9 +15,10 @@ const PostSchema = mongoose.Schema({
         type: String,
         required : true
     },
-    date:{
+    createDate:{
         type: Date,
-        required : true
+        required : true,
+        default: Date.now
     },
     authorUsername:{
         type: String,
@@ -69,15 +70,16 @@ module.exports.getPostById = function(paramId, callback){
             }
             else{
                 console.log('No match');
+                return false;
             }            
-        }
-        return post;       
+        }    
 }
 
-function getById(arr, id) {
-    for (var d = 0, len = arr.length; d < len; d += 1) {
-        if (arr[d].id === id) {
-            return arr[d];
+module.exports.addPost = function(newPost, callback){      
+    newPost.save(function(error){
+        if(error){
+            console.log(error);
+            throw error;
         }
-    }
+    })
 }

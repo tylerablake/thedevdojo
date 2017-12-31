@@ -29,11 +29,11 @@ const app = express();
 const users = require('./routes/users');
 const posts = require('./routes/posts');
 
-//Port Number configured for Heroku deployment.
-const port = process.env.PORT || 8080;
+////Dev Port
+const port = 8000;
 
-//Dev Port
-//const port = 8000;
+////Port Number configured for Heroku deployment.
+//const port = process.env.PORT || 8080;
 
 //CORS Middleware
 app.use(cors());

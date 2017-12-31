@@ -89,4 +89,26 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), function(r
 });
 
 
+//Check if Post Author username exists
+router.get('/checkPostAuthor',function(req,res,next){    
+    User.getUserByUsername(req.query.authorUsername, function(error, user){        
+        if(error){
+            throw error;
+        }
+        if(!user){            
+            return res.json({
+                isFound:false
+            });            
+        }
+        else{            
+            return res.json({
+                isFound:true
+            });            
+        }
+    });    
+
+
+});
+
+
 module.exports = router;

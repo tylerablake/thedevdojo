@@ -5,6 +5,7 @@ import { useAnimation } from '@angular/core/src/animation/dsl';
 import { tokenNotExpired } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
 
+
 @Injectable()
 export class PostService {
 
@@ -21,6 +22,20 @@ export class PostService {
     let headers = new Headers();
     headers.append('Content-Type', 'Application/json');
     return this.http.get(environment.apiUrl + 'posts/' + id, {headers: headers})
+    .map(res => res.json());
+  }
+
+  createPost(post){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.post(environment.apiUrl + 'posts/create', post, {headers: headers})
+    .map(res => res.json());
+  }
+
+  validatePostAuthorUsername(authorUsername){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.get(environment.apiUrl + 'users/checkPostAuthor?authorUsername=' + authorUsername, {headers: headers})
     .map(res => res.json());
   }
 }
