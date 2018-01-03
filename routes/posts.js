@@ -2,16 +2,19 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
 
-//Get all
+//GetAll
 router.get('/', function(req,res,next){   
     Post.getPosts(function(error, posts){
         res.json(posts);
     });
 });
 
-//Get 1
-router.get('/:id', function(req,res,next){   
-    res.json(Post.getPostById(req.params.id));    
+//GetById
+router.get('/:id', function(req,res,next){       
+    Post.getPostById(req.params.id, function(error, post){
+        console.log(post);
+        res.json(post);
+    });    
 });
 
 //Create

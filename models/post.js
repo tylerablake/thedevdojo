@@ -3,6 +3,9 @@ const config = require('../config/database');
 
 //Post Schema
 const PostSchema = mongoose.Schema({
+    id:{
+        type: Number        
+    },
     title:{
         type: String,
         required: true
@@ -60,29 +63,37 @@ const tempData = [
     }];
 
 module.exports.getPosts = function(callback){
-    Post.find({},function(error, posts){
-        console.log(posts);
+    Post.find({},function(error, posts){        
        return callback(null,posts);
     });  
 }
 
-module.exports.getPostById = function(paramId, callback){        
-        for(let index = 0; index < tempData.length; index++){
-            if(tempData[index].id == paramId){
-                return tempData[index];
+module.exports.getPostById = function(paramId, callback){    
+    Post.getPosts(function(error, posts){        
+        for(let index = 0; index < posts.length; index++){ 
+
+            if(posts[index].id == paramId){
+                console.log('Match found');                             
+                return callback(null, posts[index]);
             }
             else{
-                console.log('No match');
-                return false;
+                console.log('No match');                
             }            
-        }    
+        }
+        return callback('No match found', null)  ;
+    });
 }
 
-module.exports.addPost = function(newPost, callback){      
-    newPost.save(function(error){
-        if(error){
-            console.log(error);
-            throw error;
-        }
+module.exports.addPost = function(newPost, callback){
+    Post.count({}, function(error, count){
+        newPost.id = count + 1;        
+        newPost.save(function(error){
+            if(error){
+                console.log(error);
+                throw error;
+            }
+        });
     })
+    
+    
 }
