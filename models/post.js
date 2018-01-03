@@ -60,7 +60,10 @@ const tempData = [
     }];
 
 module.exports.getPosts = function(callback){
-    return tempData;
+    Post.find({},function(error, posts){
+        console.log(posts);
+       return callback(null,posts);
+    });  
 }
 
 module.exports.getPostById = function(paramId, callback){        

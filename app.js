@@ -52,10 +52,6 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/posts', posts);
 
-//Index Route
-app.get('/', function(req,res){
-    res.send('Coming Soon');
-})
 
 //Start Server
 app.listen(port, function(){

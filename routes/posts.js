@@ -4,12 +4,13 @@ const Post = require('../models/post');
 
 //Get all
 router.get('/', function(req,res,next){   
-    res.json(Post.getPosts())
+    Post.getPosts(function(error, posts){
+        res.json(posts);
+    });
 });
 
 //Get 1
 router.get('/:id', function(req,res,next){   
-    console.log(req.params.id);
     res.json(Post.getPostById(req.params.id));    
 });
 
