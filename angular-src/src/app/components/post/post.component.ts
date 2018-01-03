@@ -19,24 +19,11 @@ authorUsername: string;
 createDate: Date;
 
   constructor(private postService:PostService,
-              private activatedRoute:ActivatedRoute,
               private validateService:ValidateService,
               private flashMessagesService:FlashMessagesService,
               private router:Router) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      let paramId = params['id'];
-
-      this.postService.getById(paramId).subscribe(data =>{
-        this.post = data;
-        return data;      
-      },
-    error =>{
-      console.log(error);
-      return false;
-    });
-    });
   }
 
   onCreatePostSubmit(){
@@ -65,8 +52,6 @@ createDate: Date;
 
     //Create Post
     this.postService.createPost(post).subscribe(data =>{
-      console.log('createPost subscribe data =');
-      console.log(data);
       if(data.success){
         this.flashMessagesService.show('Your post has been created!', { cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/posts']);

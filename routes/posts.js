@@ -11,8 +11,7 @@ router.get('/', function(req,res,next){
 
 //GetById
 router.get('/:id', function(req,res,next){       
-    Post.getPostById(req.params.id, function(error, post){
-        console.log(post);
+    Post.getPostById(req.params.id, function(error, post){        
         res.json(post);
     });    
 });

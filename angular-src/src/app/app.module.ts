@@ -17,6 +17,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostComponent } from './components/post/post.component';
+import { ViewPostComponent } from './components/view-post/view-post.component';
 
 //Services
 import { ValidateService } from './services/validate.service';
@@ -32,6 +33,7 @@ import { environment } from '../environments/environment';
 
 
 
+
 //Routes
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
@@ -40,9 +42,9 @@ const appRoutes: Routes = [
   {path: 'dashboard',component: DashboardComponent, canActivate:[AuthGuard]},
   {path: 'profile',component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'settings',component: SettingsComponent},
-  {path: 'posts', component: PostListComponent},
-  {path: 'posts/:id', component: PostComponent},
-  {path: 'posts/create', component: PostComponent}
+  {path: 'posts', component: PostListComponent},  
+  {path: 'posts/create', component: PostComponent},
+  {path: 'posts/:id', component: ViewPostComponent}
 ];
 
 @NgModule({
@@ -56,7 +58,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     SettingsComponent,
     PostComponent,
-    PostListComponent
+    PostListComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
@@ -68,4 +71,5 @@ const appRoutes: Routes = [
   providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard, PostService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
