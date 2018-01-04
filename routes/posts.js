@@ -27,14 +27,14 @@ router.post('/create', function(req,res,next){
         tags: req.body.tags 
     });
 
-    Post.addPost(newPost, function(error, user){
+    Post.addPost(newPost, function(error, post){ 
         if(error){
             res.json({
                 success: false,
                 message: 'Failed to create post'
             });
         }
-        else{
+        else{            
             res.json({
                 success: true,
                 message: 'Post created'

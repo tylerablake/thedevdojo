@@ -50,16 +50,19 @@ module.exports.getPostById = function(paramId, callback){
             else{
             }            
         }
-        return callback('No match found', null)  ;
+        return callback('No match found', null);
     });
 }
 
 module.exports.addPost = function(newPost, callback){
     Post.count({}, function(error, count){
         newPost.id = count + 1;        
-        newPost.save(function(error){
-            if(error){
-                console.log(error);
+        newPost.save(function(error, post){
+            if(error){                
+                return callback(error,null);
+            }
+            else{
+                return callback(null)
             }
         });
     })

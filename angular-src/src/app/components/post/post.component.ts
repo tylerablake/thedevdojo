@@ -60,8 +60,7 @@ tagsString: string;
     });
 
     //Create Post
-    this.postService.createPost(post).subscribe(data =>{
-      console.log(data);
+    this.postService.createPost(post).subscribe(data =>{      
       if(data.success){        
         this.flashMessagesService.show('Your post has been created!', { cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/posts']);
