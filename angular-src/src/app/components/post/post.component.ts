@@ -10,6 +10,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
+
 export class PostComponent implements OnInit {
 post:Object;
 title: string;
@@ -17,6 +18,7 @@ body: string;
 author: string;
 authorUsername: string;
 createDate: Date;
+tagsString: string;
 
   constructor(private postService:PostService,
               private validateService:ValidateService,
@@ -27,14 +29,21 @@ createDate: Date;
   }
 
   onCreatePostSubmit(){
+
+    let tagsArray = [];
+    if(this.tagsString){
+      tagsArray = this.tagsString.split(',');
+    }    
+    
     const post = {
       title: this.title,
       body: this.body,
       author: this.author,
-      authorUsername: this.authorUsername,
-      createDate: new Date()
-    };
-        
+      authorUsername: this.authorUsername,      
+      createDate: new Date(),
+      tags: tagsArray
+    };    
+      
 
     //Check required fields
     if(!this.validateService.validateCreatePost(post)){
@@ -52,7 +61,8 @@ createDate: Date;
 
     //Create Post
     this.postService.createPost(post).subscribe(data =>{
-      if(data.success){
+      console.log(data);
+      if(data.success){        
         this.flashMessagesService.show('Your post has been created!', { cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/posts']);
       }
