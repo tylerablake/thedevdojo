@@ -23,7 +23,8 @@ router.post('/create', function(req,res,next){
         author: req.body.author,
         body: req.body.body,
         authorUsername: req.body.authorUsername,
-        date: req.body.date
+        createDate: req.body.date,
+        tags: req.body.tags 
     });
 
     Post.addPost(newPost, function(error, user){

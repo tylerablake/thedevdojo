@@ -26,6 +26,9 @@ const PostSchema = mongoose.Schema({
     authorUsername:{
         type: String,
         required: true
+    },
+    tags: {
+        type: [String]
     }
 });
 
@@ -57,7 +60,6 @@ module.exports.addPost = function(newPost, callback){
         newPost.save(function(error){
             if(error){
                 console.log(error);
-                throw error;
             }
         });
     })
