@@ -17,6 +17,7 @@ body: string;
 author: string;
 authorUsername: string;
 createDate: Date;
+tags: [String];
 
   constructor(private postService:PostService,
     private activatedRoute:ActivatedRoute,
@@ -34,12 +35,13 @@ createDate: Date;
         this.body = data.body;        
         this.author = data.author;
         this.authorUsername = data.authorUsername;
+        this.tags = data.tags;
         return data;      
       },
-    error =>{
-      console.log(error);
-      return false;
-    });
+      error =>{
+        console.log(error);
+        return false;
+      });
     });
   }
 
