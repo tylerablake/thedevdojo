@@ -59,6 +59,19 @@ module.exports.getPostById = function(paramId, callback){
     });
 }
 
+module.exports.getPostsByTag = function(tag, callback){
+    Post.find({tags: new RegExp('^'+tag+'$', "i")}, function(error, posts){
+        if(error){
+            return callback(error, null);
+        }
+        else{
+            return callback(null, posts);
+        }
+    })
+
+}
+
+
 module.exports.addPost = function(newPost, callback){
     Post.count({}, function(error, count){
         newPost.id = count + 1;        

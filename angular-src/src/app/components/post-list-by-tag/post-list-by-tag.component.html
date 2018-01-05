@@ -1,0 +1,13 @@
+<style>
+  p{
+    color:black;
+  }
+</style>
+<div class="container">
+  <ul class="collection" *ngFor="let post of postList;let i = index">
+    <h2 class="page-header">{{post.title}} - <small>{{post.author}}</small> </h2>
+    <small>{{post.tags}}</small>
+    <p style="background-color:#f6f6f6">{{post.body}}</p>  
+    <hr/>    
+  </ul>
+</div>

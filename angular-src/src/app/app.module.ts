@@ -18,6 +18,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { PostListComponent } from './components/post-list/post-list.component';
 import { PostComponent } from './components/post/post.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
+import { PostListByTagComponent } from './components/post-list-by-tag/post-list-by-tag.component';
 
 //Services
 import { ValidateService } from './services/validate.service';
@@ -32,8 +33,6 @@ import { environment } from '../environments/environment';
 
 
 
-
-
 //Routes
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
@@ -44,7 +43,8 @@ const appRoutes: Routes = [
   {path: 'settings',component: SettingsComponent},
   {path: 'posts', component: PostListComponent},  
   {path: 'posts/create', component: PostComponent},
-  {path: 'posts/:id', component: ViewPostComponent}
+  {path: 'posts/:id', component: ViewPostComponent},
+  {path: 'posts/tag/:tag', component: PostListByTagComponent}
 ];
 
 @NgModule({
@@ -59,7 +59,8 @@ const appRoutes: Routes = [
     SettingsComponent,
     PostComponent,
     PostListComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    PostListByTagComponent
   ],
   imports: [
     BrowserModule,

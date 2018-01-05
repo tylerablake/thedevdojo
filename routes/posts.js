@@ -16,6 +16,20 @@ router.get('/:id', function(req,res,next){
     });    
 });
 
+router.get('/tag/:tag', function(req,res){
+    Post.getPostsByTag(req.params.tag, function(error, posts){
+        if(error){
+            res.json({
+                success: false,
+                message: 'Failed to find posts'
+            });
+        }
+        else{
+            res.json({posts});
+        }
+    })
+})
+
 //Create
 router.post('/create', function(req,res,next){
     let newPost = new Post({

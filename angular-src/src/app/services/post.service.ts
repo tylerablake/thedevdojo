@@ -16,12 +16,19 @@ export class PostService {
       headers.append('Content-Type', 'Application/json');
       return this.http.get(environment.apiUrl + 'posts/', {headers: headers})
       .map(res => res.json());    
-  }
+  }  
 
   getById(id){    
     let headers = new Headers();
     headers.append('Content-Type', 'Application/json');
     return this.http.get(environment.apiUrl + 'posts/' + id, {headers: headers})
+    .map(res => res.json());
+  }
+
+  getPostsLikeTag(tag){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.get(environment.apiUrl + 'posts/tag/' + tag, {headers: headers})
     .map(res => res.json());
   }
 
