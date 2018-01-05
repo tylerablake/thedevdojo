@@ -1,13 +1,20 @@
 <style>
-  p{
-    color:black;
+    .tags-wrapper {
+     display: flex;
+     flex-wrap: wrap;
   }
-</style>
-<div class="container">
-  <ul class="collection" *ngFor="let post of postList;let i = index">
-    <h2 class="page-header">{{post.title}} - <small>{{post.author}}</small> </h2>
-    <small>{{post.tags}}</small>
-    <p style="background-color:#f6f6f6">{{post.body}}</p>  
-    <hr/>    
-  </ul>
-</div>
+  </style>
+  
+  <div class="container">
+    <div class="card col-md-12" *ngFor="let post of postList;">
+      <div class="card-body">
+        <h2 class="card-title" style="color:black;font-weight:bold;">{{post.title}}</h2>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>      
+      </div>
+      <div class="tags-wrapper">
+        <div class="tag-holder" *ngFor="let tag of post.tags">          
+          <span style="padding-left:10px;"><a href="posts/tag/{{tag}}">#{{tag}}</a></span>          
+        </div>
+      </div>
+    </div>
+  </div>

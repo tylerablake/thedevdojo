@@ -10,6 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class PostListByTagComponent implements OnInit {
 postList:[Object];
+searchedTag : string;
 
   constructor(private postService:PostService,
               private activatedRoute:ActivatedRoute) { }
@@ -18,9 +19,11 @@ postList:[Object];
     this.activatedRoute.params.subscribe((params: Params) => {
       
       let paramTag = params['tag'];
-
+      
       this.postService.getPostsLikeTag(paramTag).subscribe(data =>{            
-        this.postList = data.posts;
+        this.postList = data.posts;      
+
+        this.searchedTag = paramTag;        
         return data;      
       },
       error =>{
