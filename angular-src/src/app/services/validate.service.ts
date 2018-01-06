@@ -33,15 +33,12 @@ export class ValidateService {
   else{
     return true;
   }
-
-  }
+}
 
   validateCreatePost(post){
-    if((post.title == undefined || post.title === '') || 
-    (post.body == undefined || post.body === '') ||
-    (post.author == undefined || post.author === '') ||
-    (post.authorUsername == undefined || post.authorUsername === '') ||
-    (post.createDate == undefined || post.createDate === '')){
+    if((!post.title) || 
+    (!post.body) ||
+    (!post.authorUsername)){
       return false;
     }
     else{

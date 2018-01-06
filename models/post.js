@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
+const User = require('./user');
 
 //Post Schema
 const PostSchema = mongoose.Schema({
@@ -70,18 +71,32 @@ module.exports.getPostsByTag = function(tag, callback){
     })
 }
 
-module.exports.addPost = function(newPost, callback){
-    Post.count({}, function(error, count){
-        newPost.id = count + 1;        
-        newPost.save(function(error, post){
-            if(error){                
-                return callback(error,null);
-            }
-            else{
-                return callback(null)
-            }
-        });
-    })
+module.exports.addPost = function(newPost, callback){    
+    User.findOne({username: newPost.authorUsername}, function(error, user){
+        if(error){
+            callback(erorr, null)            
+        }
+        else{            
+            let authorName = user.name;            
+            newPost.author = authorName;
+
+            Post.count({}, function(error, count){
+                newPost.id = count + 1;        
+                newPost.save(function(error, post){
+                    if(error){                
+                        return callback(error,null);
+                    }
+                    else{
+                        return callback(null)
+                    }
+                });
+            })
+
+
+        }
+    });    
+
+
     
     
 }

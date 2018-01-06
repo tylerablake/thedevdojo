@@ -15,7 +15,6 @@ export class PostComponent implements OnInit {
 post:Object;
 title: string;
 body: string;
-author: string;
 authorUsername: string;
 createDate: Date;
 tagsString: string;
@@ -37,14 +36,12 @@ tagsString: string;
     
     const post = {
       title: this.title,
-      body: this.body,
-      author: this.author,
+      body: this.body,    
       authorUsername: this.authorUsername,      
       createDate: new Date(),
       tags: tagsArray
     };    
       
-
     //Check required fields
     if(!this.validateService.validateCreatePost(post)){
       this.flashMessagesService.show('Please fill in all fields.', { cssClass: 'alert-danger', timeout: 3000});
@@ -52,26 +49,24 @@ tagsString: string;
     }
 
     //Validate author username
-    this.postService.validatePostAuthorUsername(post.authorUsername).subscribe(data => {
+    this.postService.validatePostAuthorUsername(post.authorUsername).subscribe(data => {      
       if(!data.isFound){
         this.flashMessagesService.show('Please enter a valid author username.', { cssClass: 'alert-danger', timeout: 3000});
         return false;
       }
-    });
-
-    //Create Post
-    this.postService.createPost(post).subscribe(data =>{      
-      if(data.success){        
-        this.flashMessagesService.show('Your post has been created!', { cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/posts']);
-      }
       else{
-        this.flashMessagesService.show('Unable to create your post, please try again later.', { cssClass: 'alert-danger', timeout: 3000});
-        this.router.navigate(['/posts/create']);       
+          //Create Post
+          this.postService.createPost(post).subscribe(data =>{      
+            if(data.success){        
+              this.flashMessagesService.show('Your post has been created!', { cssClass: 'alert-success', timeout: 3000});
+              this.router.navigate(['/posts']);
+            }
+            else{
+              this.flashMessagesService.show('Unable to create your post, please try again later.', { cssClass: 'alert-danger', timeout: 3000});
+              this.router.navigate(['/posts/create']);       
+            }
+          });
       }
     });
-
-
   }
-  
 }
