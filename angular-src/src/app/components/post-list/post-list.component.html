@@ -6,12 +6,15 @@
   .card{
     margin-bottom:10px;
   }
+  h2,span, h2 > a, span > a{
+  color:#343a40;
+}
   </style>
   
   <div class="container">
     <div class="card col-md-12" *ngFor="let post of postList;">
       <div class="card-body">
-        <h2 class="card-title" style="color:black;font-weight:bold;">{{post.title}}</h2>
+        <h2 class="card-title" style="font-weight:bold;"><a href="posts/{{post.id}}">{{post.title}}</a></h2>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>      
       </div>
       <div class="tags-wrapper">

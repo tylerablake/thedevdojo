@@ -60,7 +60,7 @@ module.exports.getPostById = function(paramId, callback){
 }
 
 module.exports.getPostsByTag = function(tag, callback){
-    Post.find({tags: new RegExp('^'+tag+'$', "i")}, function(error, posts){
+    Post.find({tags: new RegExp('^'+ tag +'$', "i")}, function(error, posts){
         if(error){
             return callback(error, null);
         }
@@ -68,9 +68,7 @@ module.exports.getPostsByTag = function(tag, callback){
             return callback(null, posts);
         }
     })
-
 }
-
 
 module.exports.addPost = function(newPost, callback){
     Post.count({}, function(error, count){
