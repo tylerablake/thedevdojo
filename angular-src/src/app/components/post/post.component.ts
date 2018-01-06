@@ -25,6 +25,7 @@ tagsString: string;
               private router:Router) { }
 
   ngOnInit() {
+
   }
 
   onCreatePostSubmit(){

@@ -1,21 +1,26 @@
 <h2 class="page-header">View Post</h2>
   <div class="form-group">
     <label>Title</label>
-    <input type="text" class="form-control" [(ngModel)]="title" name="title" disabled='disabled'>
+    <input type="text" class="form-control" [(ngModel)]="title" name="title" [disabled]="!fieldsEditable">
   </div>
   <div class="form-group">
     <label>Body</label>
-    <textarea cols="30" rows="10" class="form-control"  [(ngModel)]="body" name="body" disabled='disabled'></textarea>
+    <textarea cols="30" rows="10" class="form-control"  [(ngModel)]="body" name="body" [disabled]="!fieldsEditable"></textarea>
   </div>
   <div class="form-group">
     <label>Author</label>
-    <input type="text" class="form-control" [(ngModel)]="author" name="author" disabled='disabled'>
+    <input type="text" class="form-control" [(ngModel)]="author" name="author" [disabled]="!fieldsEditable">
   </div>
   <div class="form-group">
     <label>Author Username</label>
-    <input type="text" class="form-control" [(ngModel)]="authorUsername" name="authorUsername" disabled='disabled'>
+    <input type="text" class="form-control" [(ngModel)]="authorUsername" name="authorUsername" [disabled]="!fieldsEditable">
   </div>
   <div class="form-group">
     <label>Tags (comma separated for now)</label>
-    <input type="text" class="form-control" [(ngModel)]="tags" name="tags" disabled='disabled'>
+    <input type="text" class="form-control" [(ngModel)]="tags" name="tags" [disabled]="!fieldsEditable">
   </div>
+
+
+  <button class="btn btn-default" style="margin-bottom:5px;" *ngIf="userMatches" (click)="toggleEdit()" >Edit</button>      
+<button class="btn btn-info" style="margin-bottom:5px;"*ngIf="fieldsEditable" >Save</button>
+  

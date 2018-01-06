@@ -18,6 +18,9 @@ author: string;
 authorUsername: string;
 createDate: Date;
 tags: [String];
+loggedInUsername: string;
+userMatches: boolean;
+fieldsEditable: boolean;
 
   constructor(private postService:PostService,
     private activatedRoute:ActivatedRoute,
@@ -26,6 +29,8 @@ tags: [String];
     private router:Router) { }
 
   ngOnInit() {
+    let username = JSON.parse(localStorage.getItem('user')).username;    
+
     this.activatedRoute.params.subscribe((params: Params) => {
       let paramId = params['id'];
 
@@ -36,6 +41,9 @@ tags: [String];
         this.author = data.author;
         this.authorUsername = data.authorUsername;
         this.tags = data.tags;
+        this.userMatches = this.loggedInUsername = data.authorUsername;
+        this.fieldsEditable = false;
+        
         return data;      
       },
       error =>{
@@ -43,6 +51,10 @@ tags: [String];
         return false;
       });
     });
+  }
+
+  toggleEdit(){
+    this.fieldsEditable = !this.fieldsEditable;
   }
 
 }
