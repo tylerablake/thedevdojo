@@ -11,17 +11,18 @@ h2,span, h2 > a, span > a{
 }
 </style>
 
-<div class="container">
+<div class="container">    
     <h2>Posts with a tag of "{{searchedTag}}"</h2>
-  <div class="card col-md-12" *ngFor="let post of postList;">
-    <div class="card-body">
-      <h2 class="card-title" style="font-weight:bold;"><a href="posts/{{post.id}}">{{post.title}}</a></h2>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>      
-    </div>
-    <div class="tags-wrapper">
-      <div class="tag-holder" *ngFor="let tag of post.tags">          
-        <span style="padding-left:10px;color:#343a40"><a href="posts/tag/{{tag}}">#{{tag}}</a></span>          
+    <a class="btn btn-info" [routerLink]="['create']" style="margin-bottom:5px;">Create</a>      
+    <div class="card col-md-12" *ngFor="let post of postList;">
+      <div class="card-body">
+        <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post.id]">{{post.title}}</a></h2>  
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>      
+      </div>
+      <div class="tags-wrapper">
+        <div class="tag-holder" *ngFor="let tag of post.tags">          
+          <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag]">#{{tag}}</a></span>          
+        </div>
       </div>
     </div>
   </div>
-</div>
