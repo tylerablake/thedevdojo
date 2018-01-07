@@ -46,7 +46,8 @@ module.exports.getPosts = function(callback){
     });  
 }
 
-module.exports.getPostById = function(paramId, callback){    
+module.exports.getPostById = function(paramId, callback){   
+    //TODO: refactor to use Post.findOne()...you lazy bum 
     Post.getPosts(function(error, posts){        
         for(let index = 0; index < posts.length; index++){ 
 
@@ -68,13 +69,13 @@ module.exports.getPostsByTag = function(tag, callback){
         else{
             return callback(null, posts);
         }
-    })
+    });
 }
 
 module.exports.addPost = function(newPost, callback){    
     User.findOne({username: newPost.authorUsername}, function(error, user){
         if(error){
-            callback(erorr, null)            
+            return callback(error, null)            
         }
         else{            
             let authorName = user.name;            
@@ -94,9 +95,33 @@ module.exports.addPost = function(newPost, callback){
 
 
         }
-    });    
+    });     
+}
 
+module.exports.updatePost = function(updatedPost, callback){
+    console.log(updatedPost);
 
-    
-    
+    Post.findOne({ id: updatedPost.id}, function(error, post){
+        if(error){
+            return callback(error, null);
+        }
+        else{
+
+            Post.findByIdAndUpdate(post._id, 
+                { $set: { 
+                    title: updatedPost.title,
+                    body: updatedPost.body,
+                    tags: updatedPost.tags,
+                    author: updatedPost.author                   
+                    //TODO: updatedDate: new Date()
+                }}, { new: true }, function (error, post) {
+                if (error){
+                    return callback('Error occurred while attempting to update your post.', null);
+                }
+                else{                    
+                    return callback(null, post)                    
+                }                
+              });            
+        }
+    });
 }

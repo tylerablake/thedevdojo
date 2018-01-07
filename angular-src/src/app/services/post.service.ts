@@ -39,6 +39,13 @@ export class PostService {
     .map(res => res.json());
   }
 
+  updatePost(post){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.post(environment.apiUrl + 'posts/update', post, {headers: headers})
+    .map(res => res.json());
+  }
+
   validatePostAuthorUsername(authorUsername){
     let headers = new Headers();
     headers.append('Content-Type', 'Application/json');

@@ -1,4 +1,5 @@
 <h2 class="page-header">View Post</h2>
+<form>
   <div class="form-group">
     <label>Title</label>
     <input type="text" class="form-control" [(ngModel)]="title" name="title" [disabled]="!fieldsEditable">
@@ -13,14 +14,14 @@
   </div>
   <div class="form-group">
     <label>Author Username</label>
-    <input type="text" class="form-control" [(ngModel)]="authorUsername" name="authorUsername" [disabled]="!fieldsEditable">
+    <input type="text" class="form-control" [(ngModel)]="authorUsername" name="authorUsername" [disabled]="true">
   </div>
   <div class="form-group">
     <label>Tags (comma separated for now)</label>
-    <input type="text" class="form-control" [(ngModel)]="tags" name="tags" [disabled]="!fieldsEditable">
+    <input type="text" class="form-control" [(ngModel)]="tagsString" name="tagsString" [disabled]="!fieldsEditable">
   </div>
 
+<button class="btn btn-default" style="margin-bottom:5px;" *ngIf="userMatches" (click)="toggleEdit()" >Edit</button>      
+<button class="btn btn-info" style="margin-bottom:5px;"*ngIf="fieldsEditable" (click)="onEditPostSubmit()">Save</button>
 
-  <button class="btn btn-default" style="margin-bottom:5px;" *ngIf="userMatches" (click)="toggleEdit()" >Edit</button>      
-<button class="btn btn-info" style="margin-bottom:5px;"*ngIf="fieldsEditable" >Save</button>
-  
+</form>
