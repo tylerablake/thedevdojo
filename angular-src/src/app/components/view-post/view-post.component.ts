@@ -43,7 +43,7 @@ fieldsEditable: boolean;
         this.body = data.body;        
         this.author = data.author;
         this.authorUsername = data.authorUsername;
-        this.tagsString = data.tags;
+        this.tagsString = data.tags.join(',');
         this.userMatches = this.loggedInUsername = data.authorUsername;
         this.fieldsEditable = false;
         this.id = paramId;    

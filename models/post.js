@@ -112,8 +112,8 @@ module.exports.updatePost = function(updatedPost, callback){
                     title: updatedPost.title,
                     body: updatedPost.body,
                     tags: updatedPost.tags,
-                    author: updatedPost.author                   
-                    //TODO: updatedDate: new Date()
+                    author: updatedPost.author,                   
+                    updatedDate: new Date()
                 }}, { new: true }, function (error, post) {
                 if (error){
                     return callback('Error occurred while attempting to update your post.', null);
