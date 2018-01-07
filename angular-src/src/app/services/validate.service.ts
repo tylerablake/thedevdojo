@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Http, Headers } from '@angular/http';
+// import { Http, Headers } from '@angular/http';
 
 @Injectable()
 export class ValidateService {
 
-  constructor(private http:Http) { }
+  constructor() { }
 
   validateRegister(user){
     if((user.name == undefined || user.name === '') || 
