@@ -35,8 +35,8 @@ fieldsEditable: boolean;
         
     this.activatedRoute.params.subscribe((params: Params) => {
       let paramId = params['id'];
-
-      this.postService.getById(paramId).subscribe(data =>{        
+      
+      this.postService.getById(paramId).subscribe(data =>{                
         this.post = data;
         this.title = data.title;
         this.createDate = data.createDate;

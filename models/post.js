@@ -52,6 +52,7 @@ module.exports.getPostById = function(paramId, callback){
         for(let index = 0; index < posts.length; index++){ 
 
             if(posts[index].id == paramId){
+                console.log(posts[index]);
                 return callback(null, posts[index]);
             }
             else{
@@ -106,22 +107,39 @@ module.exports.updatePost = function(updatedPost, callback){
             return callback(error, null);
         }
         else{
-
-            Post.findByIdAndUpdate(post._id, 
-                { $set: { 
-                    title: updatedPost.title,
-                    body: updatedPost.body,
-                    tags: updatedPost.tags,
-                    author: updatedPost.author,                   
-                    updatedDate: new Date()
-                }}, { new: true }, function (error, post) {
-                if (error){
-                    return callback('Error occurred while attempting to update your post.', null);
+            
+            post.title = updatedPost.title;            
+            post.body = updatedPost.body;
+            post.author = updatedPost.author;
+            post.tags = updatedPost.tags;
+            post.updatedDate = new Date();
+            
+            console.log('Post to save' + post);
+            post.save(function(error, savedPost){
+                if(error){
+                    return callback('Unable to update the post.', null);
                 }
-                else{                    
-                    return callback(null, post)                    
-                }                
-              });            
+                else{
+                    return callback(null, savedPost);
+                }
+
+            });
+
+            
+            // Post.findByIdAndUpdate(post._id, 
+            //     { $set: { 
+            //         title: updatedPost.title,
+            //         body: updatedPost.body,
+            //         tags: updatedPost.tags,
+            //         author: updatedPost.author                                       
+            //     }}, { new: true }, function (error, post) {
+            //     if (error){
+            //         return callback('Error occurred while attempting to update your post.', null);
+            //     }
+            //     else{                    
+            //         return callback(null, post)                    
+            //     }                
+            //   });            
         }
     });
 }

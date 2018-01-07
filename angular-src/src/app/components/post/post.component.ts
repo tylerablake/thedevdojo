@@ -40,7 +40,8 @@ tagsString: string;
       body: this.body,    
       authorUsername: this.authorUsername,      
       createDate: new Date(),
-      tags: tagsArray
+      tags: tagsArray,
+      updateDate : new Date()
     };    
       
     //Check required fields

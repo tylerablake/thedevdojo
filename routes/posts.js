@@ -58,7 +58,7 @@ router.post('/create', function(req,res,next){
 });
 
 //TODO: Update
-router.post('/update', function(req,res,next){
+router.put('/update', function(req,res,next){
     let newPost = new Post({
         id: req.body.id,
         title: req.body.title,
