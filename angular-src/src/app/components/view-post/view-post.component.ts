@@ -43,7 +43,7 @@ fieldsEditable: boolean;
       let paramId = params['id'];
       
       this.postService.getById(paramId).subscribe(data =>{      
-        
+        this.id = data._id;
         this.post = data;
         this.title = data.title;
         this.createDate = data.createDate;
@@ -58,6 +58,7 @@ fieldsEditable: boolean;
           this.userMatches = false;
         }        
         this.fieldsEditable = false;
+        
         this.id = paramId;    
 
         return data;      

@@ -54,7 +54,7 @@ module.exports.getPostById = function(paramId, callback){
         else{
             return callback(null, post);
         }
-    })
+    });
 }
 
 module.exports.getPostsByTag = function(tag, callback){
@@ -77,8 +77,7 @@ module.exports.addPost = function(newPost, callback){
             let authorName = user.name;            
             newPost.author = authorName;
 
-            Post.count({}, function(error, count){
-                newPost.id = count + 1;        
+            Post.count({}, function(error, count){                   
                 newPost.save(function(error, post){
                     if(error){                
                         return callback(error,null);
@@ -94,47 +93,55 @@ module.exports.addPost = function(newPost, callback){
     });     
 }
 
-module.exports.updatePost = function(updatedPost, callback){
-    console.log(updatedPost);
-
-    Post.findOne({ id: updatedPost.id}, function(error, post){
+module.exports.updatePost = function(updatedPost, callback){    
+    Post.findById(updatedPost.id, function(error, post){
         if(error){
             return callback(error, null);
         }
-        else{
-            
-            post.title = updatedPost.title;            
-            post.body = updatedPost.body;
-            post.author = updatedPost.author;
-            post.tags = updatedPost.tags;
-            post.updatedDate = new Date();
-            
-            console.log('Post to save' + post);
-            post.save(function(error, savedPost){
-                if(error){
-                    return callback('Unable to update the post.', null);
-                }
-                else{
-                    return callback(null, savedPost);
-                }
-
-            });
-
-            
-            // Post.findByIdAndUpdate(post._id, 
-            //     { $set: { 
-            //         title: updatedPost.title,
-            //         body: updatedPost.body,
-            //         tags: updatedPost.tags,
-            //         author: updatedPost.author                                       
-            //     }}, { new: true }, function (error, post) {
-            //     if (error){
-            //         return callback('Error occurred while attempting to update your post.', null);
-            //     }
-            //     else{                    
-            //         return callback(null, post)                    
-            //     }                
-            //   });            
+        else{  
+            if(!post){
+                return callback('An error occurred, please try again later.', null)
+            }          
+            else{
+                post.title = updatedPost.title;            
+                post.body = updatedPost.body;
+                post.author = updatedPost.author;
+                post.tags = updatedPost.tags;
+                //post.updatedDate = new Date();
+                
+                post.save(function(error, savedPost){
+                    if(error){
+                        return callback('Unable to update the post.', null);
+                    }
+                    else{
+                        return callback(null, savedPost);
+                    }
+                });
+            } 
         }
-    });
+    })
+
+    // Post.findOne({ _id: updatedPost._id}, function(error, post){
+    //     if(error){
+    //         return callback(error, null);
+    //     }
+    //     else{            
+    //         post.title = updatedPost.title;            
+    //         post.body = updatedPost.body;
+    //         post.author = updatedPost.author;
+    //         post.tags = updatedPost.tags;
+    //         post.updatedDate = new Date();
+            
+    //         console.log('Post to save' + post);
+    //         post.save(function(error, savedPost){
+    //             if(error){
+    //                 console.log(error);
+    //                 return callback('Unable to update the post.', null);
+    //             }
+    //             else{
+    //                 return callback(null, savedPost);
+    //             }
+    //         });           
+    //     }
+    // });
 }

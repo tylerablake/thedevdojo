@@ -59,15 +59,16 @@ router.post('/create', function(req,res,next){
 
 //TODO: Update
 router.put('/update', function(req,res,next){
-    let newPost = new Post({
-        id: req.body.id,
-        title: req.body.title,
-        author: req.body.author,
-        body: req.body.body,
-        authorUsername: req.body.authorUsername,
-        createDate: req.body.date,
-        tags: req.body.tags 
-    });
+    
+    let newPost =  {
+        id,
+        title,
+        body,
+        author,
+        authorUsername,
+        createDate,
+        tags
+    } = req.body;
 
     Post.updatePost(newPost, function(error, post){ 
         if(error){
