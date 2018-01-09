@@ -32,14 +32,15 @@ router.get('/tag/:tag', function(req,res){
 
 //Create
 router.post('/create', function(req,res,next){
-    let newPost = new Post({
-        title: req.body.title,
-        author: req.body.author,
-        body: req.body.body,
-        authorUsername: req.body.authorUsername,
-        createDate: req.body.date,
-        tags: req.body.tags 
-    });
+    
+    let newPost =  {        
+        title,
+        body,
+        author,
+        authorUsername,
+        createDate,
+        tags
+    } = req.body;
 
     Post.addPost(newPost, function(error, post){ 
         if(error){            
@@ -69,14 +70,10 @@ router.put('/update', function(req,res,next){
         createDate,
         tags
     } = req.body;
-
+    
     Post.updatePost(newPost, function(error, post){ 
         if(error){
             next(error);
-            // res.json({
-            //     success: false,
-            //     message: 'Failed to create post'
-            // });
         }
         else{            
             res.json({
