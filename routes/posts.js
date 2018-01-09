@@ -42,7 +42,7 @@ router.post('/create', function(req,res,next){
     });
 
     Post.addPost(newPost, function(error, post){ 
-        if(error){
+        if(error){            
             res.json({
                 success: false,
                 message: 'Failed to create post'
@@ -72,10 +72,11 @@ router.put('/update', function(req,res,next){
 
     Post.updatePost(newPost, function(error, post){ 
         if(error){
-            res.json({
-                success: false,
-                message: 'Failed to create post'
-            });
+            next(error);
+            // res.json({
+            //     success: false,
+            //     message: 'Failed to create post'
+            // });
         }
         else{            
             res.json({
@@ -90,7 +91,23 @@ router.put('/update', function(req,res,next){
 
 
 
-//TODO: Delete/Deactivate
+//TODO: Delete/Deactivate or just unpublish?
+
+
+
+
+
+
+
+
+router.use((error, req, res, next) => {
+    if(error){
+        res.json({
+            success: false,
+            message: error
+        });
+    }    
+});
 
 
 module.exports = router;
