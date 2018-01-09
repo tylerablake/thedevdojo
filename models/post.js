@@ -46,20 +46,15 @@ module.exports.getPosts = function(callback){
     });  
 }
 
-module.exports.getPostById = function(paramId, callback){   
-    //TODO: refactor to use Post.findOne()...you lazy bum 
-    Post.getPosts(function(error, posts){        
-        for(let index = 0; index < posts.length; index++){ 
-
-            if(posts[index].id == paramId){
-                console.log(posts[index]);
-                return callback(null, posts[index]);
-            }
-            else{
-            }            
+module.exports.getPostById = function(paramId, callback){       
+    Post.findById(paramId, function(error, post){
+        if(error){
+            return callback(error, null);
         }
-        return callback('No match found', null);
-    });
+        else{
+            return callback(null, post);
+        }
+    })
 }
 
 module.exports.getPostsByTag = function(tag, callback){

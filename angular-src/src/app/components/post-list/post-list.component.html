@@ -15,7 +15,7 @@
     <a class="btn btn-info" [routerLink]="['create']" style="margin-bottom:5px;">Create</a>      
     <div class="card col-md-12" *ngFor="let post of postList;">
       <div class="card-body">
-        <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post.id]">{{post.title}}</a></h2>  
+        <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>  
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>      
       </div>
       <div class="tags-wrapper">

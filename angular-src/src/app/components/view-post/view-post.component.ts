@@ -31,12 +31,19 @@ fieldsEditable: boolean;
     private router:Router) { }
 
   ngOnInit() {
-    let username = JSON.parse(localStorage.getItem('user')).username;    
-        
-    this.activatedRoute.params.subscribe((params: Params) => {
+    if(!JSON.parse(localStorage.getItem('user'))){      
+      this.userMatches = false;
+      this.loggedInUsername = '';
+    }
+    else{
+      this.loggedInUsername = JSON.parse(localStorage.getItem('user')).username;    
+    }    
+            
+    this.activatedRoute.params.subscribe((params: Params) => {      
       let paramId = params['id'];
       
-      this.postService.getById(paramId).subscribe(data =>{                
+      this.postService.getById(paramId).subscribe(data =>{      
+        
         this.post = data;
         this.title = data.title;
         this.createDate = data.createDate;
@@ -44,7 +51,12 @@ fieldsEditable: boolean;
         this.author = data.author;
         this.authorUsername = data.authorUsername;
         this.tagsString = data.tags.join(',');
-        this.userMatches = this.loggedInUsername = data.authorUsername;
+        if(this.loggedInUsername === data.authorUsername){
+          this.userMatches = true;
+        }
+        else{
+          this.userMatches = false;
+        }        
         this.fieldsEditable = false;
         this.id = paramId;    
 
