@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { useAnimation } from '@angular/core/src/animation/dsl';
 import { tokenNotExpired } from 'angular2-jwt';
 import { environment } from '../../environments/environment';
+import { EventEmitter } from '@angular/core';
 
 @Injectable()
 export class AuthService {
   authToken:any;
   user:any;
+
+  @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
 
   constructor(private http:Http){}
 
@@ -36,8 +39,7 @@ export class AuthService {
 
   }
 
-  storeUserData(token, user){
-    console.log(user);
+  storeUserData(token, user){    
     //Angular JWT looks for 'id_token' within localStorage by default
     localStorage.setItem('id_token', token);
 
@@ -45,8 +47,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
 
     this.authToken = token;
-    this.user = user;
-    console.log(user);
+    this.user = user;  
   }
 
   loadToken(){
@@ -61,6 +62,10 @@ export class AuthService {
   }
 
   loggedIn(){    
+    if(tokenNotExpired('id_token')){
+      const userName = JSON.parse(localStorage.getItem('user')).name || '';
+      this.getLoggedInName.emit(userName);
+    }
     return tokenNotExpired('id_token');
   }
 
@@ -79,5 +84,20 @@ export class AuthService {
     }
 
   }  
+
+  getUsersName(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(!user){
+      return "";
+    }
+    else{
+      if(user.name){
+          return user.name
+      }
+      else{
+        return "";
+      }
+    }
+  }
 
 }

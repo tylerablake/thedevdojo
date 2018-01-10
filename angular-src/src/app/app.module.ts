@@ -34,7 +34,6 @@ import { environment } from '../environments/environment';
 
 
 
-
 //Routes
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
@@ -64,7 +63,7 @@ const appRoutes: Routes = [
     PostListComponent,
     ViewPostComponent,
     PostListByTagComponent,
-    UnpublishedPostListComponent
+    UnpublishedPostListComponent    
   ],
   imports: [
     BrowserModule,

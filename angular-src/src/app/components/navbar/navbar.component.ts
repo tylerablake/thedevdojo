@@ -10,17 +10,24 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
+usersName : string;
+
   constructor(public authService:AuthService,
     private router:Router,
-    private flashMessagesService:FlashMessagesService) { }
+    private flashMessagesService:FlashMessagesService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {  
+    this.authService.getLoggedInName.subscribe(name => this.updateUserName(name));  
+  }  
+
+  updateUserName(name){
+    this.usersName = name;
+    }
 
   onLogoutClick(){
     this.authService.logout();
-    this.flashMessagesService.show('You have been logged out.', {cssClass:'alert-success', timeout: 3000});
+    this.usersName = "";
+    this.flashMessagesService.show('You have been logged out.', {cssClass:'alert-success', timeout: 3000});    
     this.router.navigate(['/login']);
     return false;
   }
