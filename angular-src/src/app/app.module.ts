@@ -19,6 +19,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 import { PostComponent } from './components/post/post.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { PostListByTagComponent } from './components/post-list-by-tag/post-list-by-tag.component';
+import { UnpublishedPostListComponent } from './components/unpublished-post-list/unpublished-post-list.component';
 
 //Services
 import { ValidateService } from './services/validate.service';
@@ -33,6 +34,7 @@ import { environment } from '../environments/environment';
 
 
 
+
 //Routes
 const appRoutes: Routes = [
   {path: '',component: HomeComponent},
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
   {path: 'profile',component: ProfileComponent, canActivate:[AuthGuard]},
   {path: 'settings',component: SettingsComponent},
   {path: 'posts', component: PostListComponent},  
+  {path: 'posts/unpublished', component: UnpublishedPostListComponent},  
   {path: 'posts/create', component: PostComponent},
   {path: 'posts/:id', component: ViewPostComponent},
   {path: 'posts/tag/:tag', component: PostListByTagComponent}
@@ -60,7 +63,8 @@ const appRoutes: Routes = [
     PostComponent,
     PostListComponent,
     ViewPostComponent,
-    PostListByTagComponent
+    PostListByTagComponent,
+    UnpublishedPostListComponent
   ],
   imports: [
     BrowserModule,

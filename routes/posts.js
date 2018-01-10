@@ -2,9 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/post');
 
-//GetAll
+//GetAllPublished
 router.get('/', function(req,res,next){   
-    Post.getPosts(function(error, posts){
+    Post.getPublishedPosts(function(error, posts){
+        res.json(posts);
+    });
+});
+
+//GetAllUnpublished
+router.get('/unpublished', function(req,res,next){   
+    Post.getUnpublishedPosts(function(error, posts){
         res.json(posts);
     });
 });

@@ -64,4 +64,20 @@ export class AuthService {
     return tokenNotExpired('id_token');
   }
 
+  isAdmin(){
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(!user){
+      return false;
+    }
+    else{
+      if(user.isAdmin){
+          return true
+      }
+      else{
+        return false;
+      }
+    }
+
+  }  
+
 }

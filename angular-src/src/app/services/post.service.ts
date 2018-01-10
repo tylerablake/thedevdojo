@@ -11,12 +11,19 @@ export class PostService {
 
   constructor(private http:Http) { }
 
-  getPosts(){
-      let headers = new Headers();
-      headers.append('Content-Type', 'Application/json');
-      return this.http.get(environment.apiUrl + 'posts/', {headers: headers})
-      .map(res => res.json());    
-  }  
+  getPublishedPosts(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.get(environment.apiUrl + 'posts/', {headers: headers})
+    .map(res => res.json());    
+  }
+
+  getUnpublishedPosts(){
+    let headers = new Headers();
+    headers.append('Content-Type', 'Application/json');
+    return this.http.get(environment.apiUrl + 'posts/unpublished', {headers: headers})
+    .map(res => res.json());    
+  }
 
   getById(id){    
     let headers = new Headers();

@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
 
 @Component({
-  selector: 'app-post-list',
-  templateUrl: './post-list.component.html',
-  styleUrls: ['./post-list.component.css']
+  selector: 'app-unpublished-post-list',
+  templateUrl: './unpublished-post-list.component.html',
+  styleUrls: ['./unpublished-post-list.component.css']
 })
-export class PostListComponent implements OnInit {
-  postList:[Object];
-  
+export class UnpublishedPostListComponent implements OnInit {
+postList:[Object];
+
   constructor(private postService:PostService) { }
 
   ngOnInit() {
-    this.postService.getPublishedPosts().subscribe(data =>{      
+    this.postService.getUnpublishedPosts().subscribe(data =>{            
       this.postList = data;
       return data;      
     },
@@ -21,5 +21,4 @@ export class PostListComponent implements OnInit {
     return false;
   });
   }
-
 }

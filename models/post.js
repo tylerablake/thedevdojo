@@ -39,8 +39,8 @@ const PostSchema = mongoose.Schema({
 
 const Post = module.exports = mongoose.model('Post', PostSchema);
 
-module.exports.getPosts = function(callback){
-    Post.find({},function(error, posts){
+module.exports.getPublishedPosts = function(callback){
+    Post.find({isPublished: true},function(error, posts){
         if(error){
             return callback(error, null);
         }
@@ -49,6 +49,18 @@ module.exports.getPosts = function(callback){
         }               
     });  
 }
+
+module.exports.getUnpublishedPosts = function(callback){
+    Post.find({isPublished: false}, function(error, posts){
+        if(error){
+            return callback(error, null);
+        }
+        else{
+            return callback(null, posts);
+        }
+    })
+}
+
 
 module.exports.getPostById = function(paramId, callback){       
     Post.findById(paramId, function(error, post){
