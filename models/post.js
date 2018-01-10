@@ -31,6 +31,10 @@ const PostSchema = mongoose.Schema({
     tags: {
         type: [String]
     },
+    updateDate:{
+        type: Date,
+        default: Date.now
+    },
     isPublished:{
         type: Boolean,
         default: false   
@@ -98,7 +102,8 @@ module.exports.addPost = function(newPost, callback){
                 authorUsername: newPost.authorUsername,
                 createDate: newPost.createDate,
                 isPublished: newPost.isPublished,
-                tags: newPost.tags                
+                tags: newPost.tags,
+                updateDate: newPost.createDate                
             });
                              
             postToCreate.save(function(error, post){
@@ -129,7 +134,7 @@ module.exports.updatePost = function(updatedPost, callback){
                 post.author = updatedPost.author;
                 post.tags = updatedPost.tags;
                 post.isPublished = updatedPost.isPublished;
-                //post.updatedDate = new Date();
+                post.updateDate = new Date();
                 
                 post.save(function(error, savedPost){
                     if(error){
@@ -141,29 +146,5 @@ module.exports.updatePost = function(updatedPost, callback){
                 });
             } 
         }
-    })
-
-    // Post.findOne({ _id: updatedPost._id}, function(error, post){
-    //     if(error){
-    //         return callback(error, null);
-    //     }
-    //     else{            
-    //         post.title = updatedPost.title;            
-    //         post.body = updatedPost.body;
-    //         post.author = updatedPost.author;
-    //         post.tags = updatedPost.tags;
-    //         post.updatedDate = new Date();
-            
-    //         console.log('Post to save' + post);
-    //         post.save(function(error, savedPost){
-    //             if(error){
-    //                 console.log(error);
-    //                 return callback('Unable to update the post.', null);
-    //             }
-    //             else{
-    //                 return callback(null, savedPost);
-    //             }
-    //         });           
-    //     }
-    // });
+    });
 }
