@@ -64,7 +64,8 @@ router.post('/authenticate', function(req,res,next){
                         id: user._id,
                         name: user.name,
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        isAdmin: user.isAdmin
                     }
                 });
             }

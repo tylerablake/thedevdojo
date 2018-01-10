@@ -37,6 +37,7 @@ export class AuthService {
   }
 
   storeUserData(token, user){
+    console.log(user);
     //Angular JWT looks for 'id_token' within localStorage by default
     localStorage.setItem('id_token', token);
 
@@ -45,6 +46,7 @@ export class AuthService {
 
     this.authToken = token;
     this.user = user;
+    console.log(user);
   }
 
   loadToken(){

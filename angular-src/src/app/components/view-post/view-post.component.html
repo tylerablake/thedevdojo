@@ -20,8 +20,13 @@
     <label>Tags (comma separated for now)</label>
     <input type="text" class="form-control" [(ngModel)]="tagsString" name="tagsString" [disabled]="!fieldsEditable">
   </div>
+  <div class="form-group">
+    <label>Is Published</label>
+    <input type="checkbox" class="form-control" [(ngModel)]="isPublished" name="isPublished" [disabled]="!userIsAdmin">
 
-<button class="btn btn-default" style="margin-bottom:5px;" *ngIf="userMatches" (click)="toggleEdit()" >Edit</button>      
+  </div>
+
+<button class="btn btn-default" style="margin-bottom:5px;" *ngIf="userMatches || userIsAdmin" (click)="toggleEdit()" >Edit</button>      
 <button class="btn btn-info" style="margin-bottom:5px;"*ngIf="fieldsEditable" (click)="onEditPostSubmit()">Save</button>
 
 </form>

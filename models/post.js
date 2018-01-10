@@ -30,6 +30,10 @@ const PostSchema = mongoose.Schema({
     },
     tags: {
         type: [String]
+    },
+    isPublished:{
+        type: Boolean,
+        default: false   
     }
 });
 
@@ -74,21 +78,26 @@ module.exports.addPost = function(newPost, callback){
             return callback(error, null)            
         }
         else{            
-            let authorName = user.name;            
-            newPost.author = authorName;
 
-            Post.count({}, function(error, count){                   
-                newPost.save(function(error, post){
-                    if(error){                
+            let postToCreate = new Post({
+                title: newPost.title,
+                body: newPost.body,
+                author: user.name,
+                authorUsername: newPost.authorUsername,
+                createDate: newPost.createDate,
+                isPublished: newPost.isPublished,
+                tags: newPost.tags                
+            });
+                             
+            postToCreate.save(function(error, post){
+                    if(error){            
+                        console.log(error)    ;
                         return callback(error,null);
                     }
                     else{
                         return callback(null)
                     }
                 });
-            })
-
-
         }
     });     
 }
@@ -107,6 +116,7 @@ module.exports.updatePost = function(updatedPost, callback){
                 post.body = updatedPost.body;
                 post.author = updatedPost.author;
                 post.tags = updatedPost.tags;
+                post.isPublished = updatedPost.isPublished;
                 //post.updatedDate = new Date();
                 
                 post.save(function(error, savedPost){

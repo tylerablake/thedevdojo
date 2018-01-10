@@ -23,6 +23,8 @@ tagsString: string;
 loggedInUsername: string;
 userMatches: boolean;
 fieldsEditable: boolean;
+isPublished: boolean;
+userIsAdmin: boolean;
 
   constructor(private postService:PostService,
     private activatedRoute:ActivatedRoute,
@@ -34,11 +36,17 @@ fieldsEditable: boolean;
     if(!JSON.parse(localStorage.getItem('user'))){      
       this.userMatches = false;
       this.loggedInUsername = '';
+      this.userIsAdmin = false;
     }
     else{
-      this.loggedInUsername = JSON.parse(localStorage.getItem('user')).username;    
+      let currentUser = JSON.parse(localStorage.getItem('user'));
+      console.log(currentUser);
+      this.loggedInUsername = currentUser.username; 
+      this.userIsAdmin = currentUser.isAdmin;
     }    
-            
+    
+    console.log(this.userIsAdmin);
+
     this.activatedRoute.params.subscribe((params: Params) => {      
       let paramId = params['id'];
       
@@ -50,14 +58,15 @@ fieldsEditable: boolean;
         this.body = data.body;        
         this.author = data.author;
         this.authorUsername = data.authorUsername;
-        this.tagsString = data.tags.join(',');
+        this.tagsString = data.tags.join(',');        
+        this.fieldsEditable = false;
+        this.isPublished = data.isPublished || false;
         if(this.loggedInUsername === data.authorUsername){
           this.userMatches = true;
         }
         else{
           this.userMatches = false;
         }        
-        this.fieldsEditable = false;
         
         this.id = paramId;    
 
@@ -88,7 +97,8 @@ fieldsEditable: boolean;
       author: this.author,
       authorUsername: this.authorUsername,      
       createDate: this.createDate,
-      tags: tagsArray
+      tags: tagsArray,
+      isPublished : this.isPublished
     };    
       
     //Check required fields
