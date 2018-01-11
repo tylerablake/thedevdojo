@@ -4,6 +4,7 @@ import { PostService } from '../../services/post.service';
 import { ValidateService } from '../../services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -12,12 +13,14 @@ import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
 })
 
 export class PostComponent implements OnInit {
-post:Object;
+post: FormGroup;
 title: string;
 body: string;
 authorUsername: string;
 createDate: Date;
+updateDate: Date;
 tagsString: string;
+
 
   constructor(private postService:PostService,
               private validateService:ValidateService,
@@ -25,40 +28,26 @@ tagsString: string;
               private router:Router) { }
 
   ngOnInit() {
-
+    this.post = new FormGroup({
+      title: new FormControl('', Validators.required),
+      body: new FormControl('', Validators.required),
+      authorUsername: new FormControl('', Validators.required),
+      createDate: new FormControl(new Date()),
+      updateDate: new FormControl(new Date()),
+      tags: new FormControl('')
+    });
   }
 
-  onCreatePostSubmit(){
-
-    let tagsArray = [];
-    if(this.tagsString){
-      tagsArray = this.tagsString.split(',');
-    }    
-    
-    const post = {
-      title: this.title,
-      body: this.body,    
-      authorUsername: this.authorUsername,      
-      createDate: new Date(),
-      tags: tagsArray,
-      updateDate : new Date()
-    };    
-      
-    //Check required fields
-    if(!this.validateService.validateCreatePost(post)){
-      this.flashMessagesService.show('Please fill in all fields.', { cssClass: 'alert-danger', timeout: 3000});
-      return false;
-    }
-
+  onCreatePostSubmit(post, valid){    
     //Validate author username
-    this.postService.validatePostAuthorUsername(post.authorUsername).subscribe(data => {      
+    this.postService.validatePostAuthorUsername(post.value.authorUsername).subscribe(data => {      
       if(!data.isFound){
         this.flashMessagesService.show('Please enter a valid author username.', { cssClass: 'alert-danger', timeout: 3000});
         return false;
       }
       else{
           //Create Post
-          this.postService.createPost(post).subscribe(data =>{      
+          this.postService.createPost(post.value).subscribe(data =>{      
             if(data.success){        
               this.flashMessagesService.show('Your post has been created!', { cssClass: 'alert-success', timeout: 3000});
               this.router.navigate(['/posts']);
