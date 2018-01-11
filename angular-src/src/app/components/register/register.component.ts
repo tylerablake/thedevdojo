@@ -3,7 +3,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthService} from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { RegisterValidators } from '../../validators/register.validators';
 
 @Component({
   selector: 'app-register',  
@@ -35,8 +34,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegisterSubmit(user, valid){
-
-    this.authService.registerUser(user).subscribe(data =>{
+    
+    this.authService.registerUser(user.value).subscribe(data =>{
       if(data.success){
         this.flashMessagesService.show('User has been registered and can log in.', { cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/login']);

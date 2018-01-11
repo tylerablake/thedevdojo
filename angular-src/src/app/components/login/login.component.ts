@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { ValidateService } from '../../services/validate.service';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -12,28 +13,22 @@ import { ValidateService } from '../../services/validate.service';
 export class LoginComponent implements OnInit {
 username:string;
 password:string;
+login: FormGroup;
 
   constructor(private authService:AuthService,
               private router:Router,
-              private flashMessagesService:FlashMessagesService,
-              private validateService:ValidateService
+              private flashMessagesService:FlashMessagesService
   ) { }
 
   ngOnInit() {
+    this.login = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)  
+    });
   }
 
-  onLoginSubmit(){
-    const user = {
-      username: this.username,
-      password: this.password
-    };
-
-    if(!this.validateService.validateLogin(user)){
-      this.flashMessagesService.show('Plese fill in all fields.', { cssClass: 'alert-danger', timeout: 5000}); 
-      return false;
-    }
-
-    this.authService.authenticateUser(user).subscribe(data => {
+  onLoginSubmit(login, valid){    
+    this.authService.authenticateUser(login.value).subscribe(data => {
       if(!data.success){
         this.flashMessagesService.show(data.message, { cssClass: 'alert-danger', timeout: 5000}); 
         this.router.navigate(['login']);  

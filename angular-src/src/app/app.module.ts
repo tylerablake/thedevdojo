@@ -31,10 +31,6 @@ import { PostService } from './services/post.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 
-
-//Validators
-import { RegisterValidators } from './validators/register.validators';
-
 import { environment } from '../environments/environment';
 
 
