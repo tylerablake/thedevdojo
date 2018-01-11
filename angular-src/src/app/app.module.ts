@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { HttpModule } from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //Components
 import { AppComponent } from './app.component';
@@ -29,6 +30,10 @@ import { PostService } from './services/post.service';
 
 //Guards
 import { AuthGuard } from './guards/auth.guard';
+
+
+//Validators
+import { RegisterValidators } from './validators/register.validators';
 
 import { environment } from '../environments/environment';
 
@@ -70,7 +75,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+    ReactiveFormsModule
   ],
   providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard, PostService],
   bootstrap: [AppComponent]

@@ -1,20 +1,47 @@
+<style>
+  .error{
+    color:red;
+  }
+</style>
+
 <h2 class="page-header">Register</h2>
-<form (submit)="onRegisterSubmit()" >
+
+<form (ngSubmit)="onRegisterSubmit(user)" [formGroup]="user" >
   <div class="form-group">
-    <label>Name</label>
-    <input type="text" class="form-control" [(ngModel)]="name" name="name">
+    <label>Name</label>    
+    <input type="text" class="form-control" formControlName="name">
+    <div class="error" 
+      *ngIf="user.get('name').hasError('required') && user.get('name').touched">
+      Name is required
+    </div>
   </div>
   <div class="form-group">
     <label>Username</label>
-    <input type="text" class="form-control" [(ngModel)]="username" name="username">
+    <input type="text" class="form-control" formControlName="username">
+    <div class="error" 
+    *ngIf="user.get('username').hasError('required') && user.get('username').touched">
+    Username is required
+  </div>
   </div>
   <div class="form-group">
     <label>Email</label>
-    <input type="email" class="form-control" [(ngModel)]="email" name="email">
+    <input type="email" class="form-control" formControlName="email">
+    <div class="error" 
+    *ngIf="user.get('email').hasError('required') && user.get('email').touched">
+    Email is required
+  </div>
+  <div class="error" 
+  *ngIf="user.get('email').hasError('pattern') && user.get('email').touched">
+  Email is not a valid email format
+</div>
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="password" class="form-control" [(ngModel)]="password" name="password">
+    <input type="password" class="form-control" formControlName="password">
+    <div class="error"
+    *ngIf="user.get('password').hasError('required') && user.get('password').touched">
+    Password is required
   </div>
-<input type="submit" class="btn btn-info" value="Submit">
+  </div>
+<input type="submit" [disabled]="user.invalid" class="btn btn-info" value="Submit">
 </form>
