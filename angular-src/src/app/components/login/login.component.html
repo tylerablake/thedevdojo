@@ -9,7 +9,7 @@
 <form (submit)="onLoginSubmit(login)" [formGroup]="login">
   <div class="form-group">
     <label>Username</label>
-    <input type="text" class="form-control" formControlName="username">
+    <input type="text" placeholder="Username" class="form-control" formControlName="username">
     <div class="error" 
     *ngIf="login.get('username').hasError('required') && login.get('username').touched">
     Username is required
@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="password" class="form-control" formControlName="password">
+    <input type="password" placeholder="Password" class="form-control" formControlName="password">
     <div class="error" 
     *ngIf="login.get('password').hasError('required') && login.get('password').touched">
     Password is required
