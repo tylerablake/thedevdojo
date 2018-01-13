@@ -27,7 +27,10 @@ login: FormGroup;
     });
   }
 
-  onLoginSubmit(login, valid){    
+  onLoginSubmit(login){      
+    if(login.invalid){
+      return false;
+    }  
     this.authService.authenticateUser(login.value).subscribe(data => {
       if(!data.success){
         this.flashMessagesService.show(data.message, { cssClass: 'alert-danger', timeout: 5000}); 

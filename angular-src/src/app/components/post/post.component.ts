@@ -38,7 +38,10 @@ tagsString: string;
     });
   }
 
-  onCreatePostSubmit(post, valid){    
+  onCreatePostSubmit(post){    
+    if(post.invalid){
+      return false;
+    }
     //Validate author username
     this.postService.validatePostAuthorUsername(post.value.authorUsername).subscribe(data => {      
       if(!data.isFound){

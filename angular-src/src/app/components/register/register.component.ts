@@ -33,8 +33,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onRegisterSubmit(user, valid){
-    
+  onRegisterSubmit(user){
+    if(user.invalid){
+      return false;
+    }
     this.authService.registerUser(user.value).subscribe(data =>{
       if(data.success){
         this.flashMessagesService.show('User has been registered and can log in.', { cssClass: 'alert-success', timeout: 3000});
