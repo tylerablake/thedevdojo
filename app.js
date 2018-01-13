@@ -33,7 +33,7 @@ const posts = require('./routes/posts');
 //const port = 8000;
 
 //Port Number configured for Heroku deployment.
-const port = process.env.PORT || 8080;
+const port = 8080 || process.env.PORT;
 
 //CORS Middleware
 app.use(cors());
