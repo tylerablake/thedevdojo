@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   name: 'dev',
-  port: 8080,
+  port: 8000,
   apiUrl: 'http://localhost:8000/',
   softwareVersion: '1.0',
   databaseUrl: 'mongodb://user:test@ds161426.mlab.com:61426/meanauth',

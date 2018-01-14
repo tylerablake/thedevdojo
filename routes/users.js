@@ -86,7 +86,6 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), function(r
     res.json({
         user: req.user
     });
-    res.send('PROFILE');
 });
 
 
