@@ -78,7 +78,6 @@ router.post('/authenticate', function(req,res,next){
         });
 
     });
-
 });
 
 //Profile with token protection

@@ -5,6 +5,7 @@ import { ValidateService } from '../../services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-post',
