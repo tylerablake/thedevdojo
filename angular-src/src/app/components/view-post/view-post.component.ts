@@ -16,6 +16,7 @@ post: FormGroup;
 id: number;
 title: string;
 body: string;
+public bodyHtml: string;
 author: string;
 authorUsername: string;
 createDate: Date;
@@ -49,11 +50,13 @@ userIsAdmin: boolean;
     this.activatedRoute.params.subscribe((params: Params) => {      
       let paramId = params['id'];
       
-      this.postService.getById(paramId).subscribe(data =>{        
+      this.postService.getById(paramId).subscribe(data =>{
+        this.bodyHtml = data.body;
         this.post = new FormGroup({
           id: new FormControl(paramId),
           title: new FormControl({value: data.title, disabled: true }, Validators.required),
           body: new FormControl({value: data.body, disabled: true }, Validators.required),
+          bodyHtml: new FormControl({value: data.body, disabled: true }),
           author: new FormControl({value: data.author, disabled: true }, Validators.required),
           authorUsername: new FormControl({value: data.authorUsername, disabled: true }, Validators.required),
           createDate: new FormControl(data.createDate),

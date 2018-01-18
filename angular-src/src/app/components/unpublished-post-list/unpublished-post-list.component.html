@@ -15,8 +15,8 @@ color:#343a40;
     <h2>Unpublished Posts</h2>
   <div class="card col-md-12" *ngFor="let post of postList;">
     <div class="card-body">
-      <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>  
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>      
+      <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>        
+      <div class="card-text" Markdown>{{post.body}}</div>      
     </div>
     <div class="tags-wrapper">
       <div class="tag-holder" *ngFor="let tag of post.tags">          

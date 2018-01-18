@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MarkdownModule } from 'angular2-markdown';
 
 //Components
 import { AppComponent } from './app.component';
@@ -21,6 +22,8 @@ import { PostComponent } from './components/post/post.component';
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { PostListByTagComponent } from './components/post-list-by-tag/post-list-by-tag.component';
 import { UnpublishedPostListComponent } from './components/unpublished-post-list/unpublished-post-list.component';
+import { MessageListComponent } from './components/message-list/message-list.component';
+import { MessageComponent } from './components/message/message.component';
 
 //Services
 import { ValidateService } from './services/validate.service';
@@ -32,8 +35,7 @@ import { PostService } from './services/post.service';
 import { AuthGuard } from './guards/auth.guard';
 
 import { environment } from '../environments/environment';
-import { MessageListComponent } from './components/message-list/message-list.component';
-import { MessageComponent } from './components/message/message.component';
+
 
 
 
@@ -76,7 +78,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MarkdownModule.forRoot()
   ],
   providers: [ValidateService, FlashMessagesService, AuthService, AuthGuard, PostService],
   bootstrap: [AppComponent]

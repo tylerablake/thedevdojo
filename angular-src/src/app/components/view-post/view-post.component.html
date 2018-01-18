@@ -2,7 +2,14 @@
     .error{
       color:red;
     }
+    #markdownText{
+      background-color: #eceeef;
+      border: 1px solid #ced4da;
+      width:100%;
+      height:223px;
+    }
   </style>
+
 <h2 class="page-header">View Post</h2>
 <form [formGroup]="post" *ngIf="post" (submit)="onEditPostSubmit(post)" >
   <div class="form-group">
@@ -14,8 +21,9 @@
   </div>
   </div>
   <div class="form-group">
-    <label>Body</label>
-    <textarea cols="30" rows="10" class="form-control"  formControlName="body" [disabled]="!fieldsEditable"></textarea>
+    <label>Body</label>     
+    <div id="markdownText" Markdown [data]="bodyHtml" [hidden]="fieldsEditable"></div>
+    <textarea cols="30" rows="10" class="form-control"  formControlName="body" [hidden]="!fieldsEditable" [disabled]="!fieldsEditable"></textarea>
     <div class="error" 
     *ngIf="post.get('body').hasError('required') && post.get('body').touched">
     Body is required
