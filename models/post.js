@@ -78,7 +78,7 @@ module.exports.getPostById = function(paramId, callback){
 }
 
 module.exports.getPostsByTag = function(tag, callback){
-    Post.find({tags: new RegExp('^'+ tag +'$', "i")}, function(error, posts){
+    Post.find({tags: new RegExp('^'+ tag +'$', "i"), isPublished:true}, function(error, posts){
         if(error){
             return callback(error, null);
         }
