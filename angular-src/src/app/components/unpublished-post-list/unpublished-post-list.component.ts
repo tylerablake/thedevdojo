@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
+import { Post } from '../../interfaces/post';
 
 @Component({
   selector: 'app-unpublished-post-list',
@@ -7,17 +8,18 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./unpublished-post-list.component.css']
 })
 export class UnpublishedPostListComponent implements OnInit {
-postList:[Object];
-
+postList:[Post];
+userIsAdmin:boolean;
   constructor(private postService:PostService) { }
 
   ngOnInit() {
+    const currentUserIsAdmin = JSON.parse(localStorage.getItem('user')).isAdmin;
+    this.userIsAdmin = currentUserIsAdmin;
     this.postService.getUnpublishedPosts().subscribe(data =>{            
       this.postList = data;
       return data;      
     },
   error =>{
-    console.log(error);
     return false;
   });
   }

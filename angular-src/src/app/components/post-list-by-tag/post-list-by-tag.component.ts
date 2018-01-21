@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Post } from '../../interfaces/post';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./post-list-by-tag.component.css']
 })
 export class PostListByTagComponent implements OnInit {
-postList:[Object];
+postList:[Post];
 searchedTag : string;
 
   constructor(private postService:PostService,

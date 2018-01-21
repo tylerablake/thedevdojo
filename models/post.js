@@ -77,8 +77,15 @@ module.exports.getPostById = function(paramId, callback){
     });
 }
 
-module.exports.getPostsByTag = function(tag, callback){
-    Post.find({tags: new RegExp('^'+ tag +'$', "i"), isPublished:true}, function(error, posts){
+module.exports.getPostsByTag = function(tag, isAdmin, callback){   
+    var queryOptions = {tags: new RegExp('^'+ tag +'$', "i"), 
+                        isPublished:true};    
+    
+    if(isAdmin){
+        queryOptions = {tags: new RegExp('^'+ tag +'$', "i")};
+    }
+
+    Post.find(queryOptions, function(error, posts){
         if(error){
             return callback(error, null);
         }

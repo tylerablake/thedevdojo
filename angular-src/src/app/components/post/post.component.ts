@@ -7,6 +7,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import 'rxjs/Rx';
 
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',

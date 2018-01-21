@@ -23,7 +23,7 @@
       </div>
       <div class="tags-wrapper">
         <div class="tag-holder" *ngFor="let tag of post.tags">          
-          <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag]">#{{tag}}</a></span>          
+          <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag, this.userIsAdmin]">#{{tag}}</a></span>          
         </div>
       </div>
     </div>

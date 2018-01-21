@@ -25,6 +25,7 @@
     "angular2-jwt": "^0.2.3",
     "angular2-markdown": "^2.2.2",
     "core-js": "^2.4.1",
+    "ng-alertify": "^1.0.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },

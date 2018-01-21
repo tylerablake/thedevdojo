@@ -51,7 +51,9 @@ const appRoutes: Routes = [
   {path: 'posts/unpublished', component: UnpublishedPostListComponent},  
   {path: 'posts/create', component: PostComponent},
   {path: 'posts/:id', component: ViewPostComponent},
-  {path: 'posts/tag/:tag', component: PostListByTagComponent}
+  {path: 'posts/tag/:tag', component: PostListByTagComponent},
+  {path: 'posts/tag/:tag/true', component: PostListByTagComponent}
+  {path: 'posts/tag/:tag/false', component: PostListByTagComponent}
 ];
 
 @NgModule({

@@ -23,8 +23,12 @@ router.get('/:id', function(req,res,next){
     });    
 });
 
-router.get('/tag/:tag', function(req,res){
-    Post.getPostsByTag(req.params.tag, function(error, posts){
+//GetByTag
+router.get('/tag/:tag', function(req,res){      
+    let referringUrl = req.header('Referer');
+    const userIsAdmin = referringUrl.indexOf('true') > 0;
+
+    Post.getPostsByTag(req.params.tag, userIsAdmin, function(error, posts){
         if(error){
             res.json({
                 success: false,
@@ -35,7 +39,8 @@ router.get('/tag/:tag', function(req,res){
             res.json({posts});
         }
     })
-})
+});
+
 
 //Create
 router.post('/create', function(req,res,next){
