@@ -14,8 +14,8 @@
   }
 </style>
   
-  <div class="container">    
-    <a class="btn btn-info" [routerLink]="['create']" style="margin-bottom:5px;">Create</a>      
+  <div class="container">      
+    <button class="button is-medium is-primary" [routerLink]="['create']" style="margin-bottom:5px;">Create</button>
     <div class="card col-md-12" *ngFor="let post of postList;">
       <div class="card-body">
         <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>          
