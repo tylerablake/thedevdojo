@@ -15,16 +15,27 @@
 </style>
   
   <div class="container">      
-    <button class="button is-medium is-primary" [routerLink]="['create']" style="margin-bottom:5px;">Create</button>
-    <div class="card col-md-12" *ngFor="let post of postList;">
-      <div class="card-body">
-        <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>          
-        <div class="card-text" Markdown>{{post.body}}</div>  
-      </div>
-      <div class="tags-wrapper">
-        <div class="tag-holder" *ngFor="let tag of post.tags">          
-          <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag, this.userIsAdmin]">#{{tag}}</a></span>          
-        </div>
-      </div>
+    <button class="button is-medium is-info" [routerLink]="['create']" style="margin-bottom:5px;">Create</button>
+    <div class="col-md-12" *ngFor="let post of postList;">
+        <div class="card">
+            <div class="card-content">
+              <p class="title">
+                {{post.title}}
+              </p>
+              <p class="subtitle has-text-grey-light">
+                {{post.authorUsername}}
+              </p>
+              <p></p>
+              <p *ngIf="post.body.length > 50; then SubstringBody else FullBody"></p>
+                <ng-template #FullBody>{{post.body}}</ng-template>
+                <ng-template #SubstringBody>{{post.body.substring(0,50)}}...</ng-template>
+            </div>
+            <div class="tags-wrapper">
+                <div class="tag-holder" *ngFor="let tag of post.tags">          
+                  <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag, this.userIsAdmin]">#{{tag}}</a></span>          
+                </div>
+              </div>
+          </div>
     </div>
   </div>
+
