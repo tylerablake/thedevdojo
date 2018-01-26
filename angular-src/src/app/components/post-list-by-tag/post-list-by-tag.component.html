@@ -18,7 +18,7 @@ h2,span, h2 > a, span > a{
 </style>
 
 <div class="container">            
-    <button class="button is-medium is-info" [routerLink]="['create']" style="margin-bottom:5px;">Create</button>
+    <button class="button is-medium" [routerLink]="['/posts/create']" style="background-color:#58A4B0;color:white;margin-bottom:5px;">Create</button>
     <h2 class="title has-text-centered">Posts with a tag of <b>"{{searchedTag}}"</b></h2>
     <br>
     <div class="card col-md-12" *ngFor="let post of postList;">
