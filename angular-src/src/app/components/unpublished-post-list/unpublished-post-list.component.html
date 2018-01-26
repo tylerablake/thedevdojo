@@ -6,22 +6,32 @@
 .card{
   margin-bottom:10px;
 }
+.card-title{
+    margin-bottom:0px;
+  }
+  .card-author{
+    margin-bottom:5px;
+  }
 h2,span, h2 > a, span > a{
 color:#343a40;
 }
 </style>
 
 <div class="container">    
-    <h2>Unpublished Posts</h2>
-  <div class="card col-md-12" *ngFor="let post of postList;">
-    <div class="card-body">
-      <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>        
-      <div class="card-text" Markdown>{{post.body}}</div>      
-    </div>
-    <div class="tags-wrapper">
-      <div class="tag-holder" *ngFor="let tag of post.tags">                
-        <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag, this.userIsAdmin]">#{{tag}}</a></span>          
+    <button class="button is-medium is-info" [routerLink]="['create']" style="margin-bottom:5px;">Create</button>
+    <h2 class="title has-text-centered">Unpublished Posts</h2>
+    <div class="card col-md-12" *ngFor="let post of postList;">
+      <div class="card-body">
+        <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>  
+        <p class="card-author has-text-grey-light">{{post.author}}</p>
+        <p class="card-text" *ngIf="post.body.length > 50; then SubstringBody else FullBody"></p>
+        <ng-template #FullBody>{{post.body}}</ng-template>
+        <ng-template #SubstringBody>{{post.body.substring(0,50)}}...</ng-template>          
+      </div>
+      <div class="tags-wrapper">
+        <div class="tag-holder" *ngFor="let tag of post.tags">          
+          <span style="padding-left:10px;"><a [routerLink]="['/posts/tag', tag]">#{{tag}}</a></span>          
+        </div>
       </div>
     </div>
   </div>
-</div>
