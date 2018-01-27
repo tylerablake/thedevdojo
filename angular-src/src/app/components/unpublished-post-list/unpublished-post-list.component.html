@@ -22,7 +22,7 @@ color:#343a40;
     <h2 class="title has-text-centered">Unpublished Posts</h2>
     <div class="card col-md-12" *ngFor="let post of postList;">
       <div class="card-body">
-        <h2 class="card-title" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>  
+        <h2 class="card-title is-size-4" style="font-weight:bold;"><a [routerLink]="['/posts',post._id]">{{post.title}}</a></h2>  
         <p class="card-author has-text-grey-light">{{post.author}}</p>
         <p class="card-text" *ngIf="post.body.length > 50; then SubstringBody else FullBody"></p>
         <ng-template #FullBody>{{post.body}}</ng-template>

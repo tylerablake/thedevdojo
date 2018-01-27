@@ -9,7 +9,7 @@
 <form (ngSubmit)="onRegisterSubmit(user)" [formGroup]="user">
     <div class="field">
       <div class="control">
-          <input type="text" placeholder="Name" class="input" formControlName="name">
+          <input type="text" class="form-control" placeholder="Name" class="form-control" formControlName="name">
           <div class="error" 
           *ngIf="user.get('name').hasError('required') && user.get('name').touched">
           Name is required
@@ -19,7 +19,7 @@
 
     <div class="field">
         <div class="control">
-            <input type="text" placeholder="Username" class="input" formControlName="username">
+            <input type="text" placeholder="Username" class="form-control" formControlName="username">
             <div class="error" 
             *ngIf="user.get('username').hasError('required') && user.get('username').touched">
             Username is required
@@ -29,7 +29,7 @@
     
       <div class="field">
           <div class="control">
-              <input type="text" placeholder="Email" class="input" formControlName="email">
+              <input type="text" placeholder="Email" class="form-control" formControlName="email">
               <div class="error" 
               *ngIf="user.get('email').hasError('required') && user.get('email').touched">
               Email is required
@@ -43,7 +43,7 @@
     
         <div class="field">
             <div class="control">
-                <input type="password" placeholder="Password" class="input" formControlName="password">
+                <input type="password" placeholder="Password" class="form-control" formControlName="password">
                 <div class="error"
                 *ngIf="user.get('password').hasError('required') && user.get('password').touched">
                 Password is required
