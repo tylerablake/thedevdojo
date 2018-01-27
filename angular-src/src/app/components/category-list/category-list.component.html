@@ -10,7 +10,7 @@
   }
 
 </style>
-  <ul class="has-text-centered">
+  <ul *ngIf="authService.loggedIn()" class="has-text-centered">
     <li class="title"><a [routerLink]="['/posts/tag', 'javascript']">JavaScript</a></li> <i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
     <li class="title"><a [routerLink]="['/posts/tag', 'mongo']">Mongo</a></li> <i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
     <li class="title"><a [routerLink]="['/posts/tag', 'express']">Express</a></li><i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
