@@ -1,0 +1,58 @@
+<style>
+    .error{
+      color:red;
+    }
+    #markdownText{
+      background-color: #eceeef;
+      border: 1px solid #ced4da;
+      width:100%;
+      height:223px;
+    }
+  </style>
+
+<h2 class="title">View Post</h2>
+<form [formGroup]="post" *ngIf="post" (submit)="onEditPostSubmit(post)" >
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" formControlName="title" [disabled]="!fieldsEditable">
+    <div class="error" 
+    *ngIf="post.get('title').hasError('required') && post.get('title').touched">
+    Title is required
+  </div>
+  </div>
+  <div class="form-group">
+      <label>Author</label>
+      <input type="text" class="form-control" formControlName="author" [disabled]="!fieldsEditable">
+      <div class="error" 
+      *ngIf="post.get('author').hasError('required') && post.get('author').touched">
+      Author is required
+    </div>
+    </div>
+    <div class="form-group">
+      <label>Author Username</label>
+      <input type="text" class="form-control" formControlName="authorUsername" [disabled]="true">
+    </div>
+    <div class="form-group">
+      <label>Tags (comma separated for now)</label>
+      <input type="text" class="form-control" formControlName="tags" [disabled]="!post.fieldsEditable">
+    </div>
+  <div class="form-group">
+    <label>Body</label>     
+    <div style="height:300px;" id="markdownText" Markdown [data]="bodyHtml" [hidden]="fieldsEditable"></div>
+    <textarea cols="50" rows="10" class="form-control"  formControlName="body" [hidden]="!fieldsEditable" [disabled]="!fieldsEditable"></textarea>
+    <div class="error" 
+    *ngIf="post.get('body').hasError('required') && post.get('body').touched">
+    Body is required
+  </div>
+  </div>
+
+  <div class="form-group">
+    <label>Is Published</label>
+    <input type="checkbox" class="form-control" formControlName="isPublished" [disabled]="!userIsAdmin">
+
+  </div>
+
+<button type="button" class="btn btn-default" style="margin-bottom:5px;" *ngIf="userMatches || userIsAdmin" (click)="toggleEdit()">Edit</button>      
+<button type="submit" class="btn btn-info" style="margin-bottom:5px;"*ngIf="fieldsEditable" [disabled]="post.invalid">Save</button>
+
+</form>

@@ -4,5 +4,10 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  name: 'dev',
+  port: 8000,
+  apiUrl: 'http://localhost:8000/',
+  softwareVersion: '1.0',
+  databaseUrl: 'mongodb://user:test@ds161426.mlab.com:61426/meanauth',
 };
