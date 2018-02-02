@@ -4,26 +4,25 @@
     }
   </style>
 
-<h2 class="title">Login</h2>
-
-<form (submit)="onLoginSubmit(login)" [formGroup]="login">
-    <div class="field">
-        <div class="control">
-            <input type="text" placeholder="Username" class="input" formControlName="username">
-            <div class="error" 
-            *ngIf="login.get('username').hasError('required') && login.get('username').touched">
-            Username is required.
-          </div>
-        </div>
-      </div>
-      <div class="field">
-          <div class="control">
-              <input type="text" placeholder="Password" class="input" formControlName="password">
-              <div class="error"
-              *ngIf="login.get('password').hasError('required') && login.get('password').touched">
-              Password is required
+<h2 class="title has-text-centered">Login</h2>
+    <form (submit)="onLoginSubmit(login)" [formGroup]="login">
+        <div class="field">
+            <div class="control">
+                <input type="text" placeholder="Username" class="form-control" formControlName="username">
+                <div class="error" 
+                *ngIf="login.get('username').hasError('required') && login.get('username').touched">
+                Username is required
+              </div>
             </div>
-                    </div>
-        </div>
-<input type="submit" [disabled]="login.invalid" class="button is-medium is-info" value="Submit">
-</form>
+          </div>
+          <div class="field">
+              <div class="control">
+                  <input type="password" placeholder="Password" class="form-control" formControlName="password">
+                  <div class="error"
+                  *ngIf="login.get('password').hasError('required') && login.get('password').touched">
+                  Password is required
+                </div>
+                        </div>
+            </div>
+    <input type="submit" [disabled]="login.invalid" class="button is-medium" style="background-color:#58A4B0;color:white;" value="Submit">
+    </form>

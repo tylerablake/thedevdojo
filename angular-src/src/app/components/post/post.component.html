@@ -3,11 +3,10 @@
       color:red;
     }
   </style>
-<h2 class="page-header">Create Post</h2>
+<h2 class="title">Create Post</h2>
 
 <form (submit)="onCreatePostSubmit(post)"[formGroup]="post" >
   <div class="form-group">
-    <label>Title</label>
     <input type="text" placeholder="Title" class="form-control" formControlName="title">
     <div class="error" 
     *ngIf="post.get('title').hasError('required') && post.get('title').touched">
@@ -15,25 +14,22 @@
   </div>
   </div>
   <div class="form-group">
-    <label>Author's Username</label>
     <input type="text" placeholder="Author's Username" class="form-control" formControlName="authorUsername">
     <div class="error" 
     *ngIf="post.get('authorUsername').hasError('required') && post.get('authorUsername').touched">
     Author's Username is required
   </div>
   </div>
-  <div class="form-group">
-    <label>Tags (comma separated for now)</label>
-    <input type="text" placeholder="Tags" class="form-control" formControlName="tags">
+  <div class="form-group">    
+    <input type="text" placeholder="Tags (comma separated for now)" class="form-control" formControlName="tags">
   </div>
-  <div class="form-group">
-      <label>Body</label>
+  <div class="form-group">      
       <div Markdown></div>
-      <textarea cols="100" rows="10" placeholder="Body" class="form-control"  formControlName="body"></textarea>
+      <textarea cols="100" rows="20" placeholder="Body (Markdown)" class="form-control"  formControlName="body"></textarea>
       <div class="error" 
       *ngIf="post.get('body').hasError('required') && post.get('body').touched">
       Body is required
     </div>
     </div>
-<input type="submit" [disabled]="post.invalid" class="btn btn-info" value="Submit">
+<input type="submit" [disabled]="post.invalid" class="button is-medium" style="background-color:#58A4B0;color:white;" value="Submit">
 </form>

@@ -35,6 +35,7 @@ import { PostService } from './services/post.service';
 import { AuthGuard } from './guards/auth.guard';
 
 import { environment } from '../environments/environment';
+import { CategoryListComponent } from './components/category-list/category-list.component';
 
 
 
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
     PostListByTagComponent,
     UnpublishedPostListComponent,
     MessageListComponent,
-    MessageComponent    
+    MessageComponent,
+    CategoryListComponent    
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<style>
+  ul li {
+    display: inline;
+  }
+  ul{
+    margin-top:15px;
+  }
+  a{
+    color:#58A4B0;
+  }
+
+</style>
+  <ul *ngIf="authService.loggedIn()" class="has-text-centered">
+    <li class="title"><a [routerLink]="['/posts/tag', 'javascript']">JavaScript</a></li> <i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
+    <li class="title"><a [routerLink]="['/posts/tag', 'mongo']">Mongo</a></li> <i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
+    <li class="title"><a [routerLink]="['/posts/tag', 'express']">Express</a></li><i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
+    <li class="title"><a [routerLink]="['/posts/tag', 'angular']">Angular</a></li><i class="fa fa-circle fa-xs" style="padding-bottom:5px;"></i> 
+    <li class="title"><a [routerLink]="['/posts/tag', 'node']">Node</a></li>
+  </ul>
